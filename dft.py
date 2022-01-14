@@ -5,7 +5,7 @@ from math import sqrt
 import matplotlib.pyplot as plt
 
 
-def f(p1, n):
+def calc_beta(p1, n):
     p0 = 0.50
     q0 = 1 - p0
     q1 = 1 - p1
@@ -19,12 +19,19 @@ def f(p1, n):
     return res
 
 
-values = np.arange(0.48, 0.52, 0.001)
-f_res = []
-for p1 in values:
-    f_res.append(f(p1, 1000))
-    # print(f(p1, 1000))
+def plot_values(iterations, color):
+    values = np.arange(0.48, 0.52, 0.001)
+    beta_values = []
+    for p1 in values:
+        beta_values.append(calc_beta(p1, iterations))
+    beta_values = np.array(beta_values)
+    plt.plot(values, beta_values, label=f"{iterations//1000}k iterations")
 
-res = np.array(f_res)
-plt.plot(values, res)
+
+plot_values(1000, "b")
+plot_values(10000, "r")
+plot_values(100000, "g")
+plt.legend(loc="upper left")
+plt.xlabel("$p_1$")
+plt.ylabel("$\\beta(p_1)$")
 plt.show()
