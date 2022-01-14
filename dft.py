@@ -25,7 +25,7 @@ def plot_values(iterations, color):
     for p1 in values:
         beta_values.append(calc_beta(p1, iterations))
     beta_values = np.array(beta_values)
-    plt.plot(values, beta_values, label=f"{iterations//1000}k iterations")
+    plt.plot(values, beta_values, label=f"$n={iterations}$")
 
 
 plot_values(1000, "b")
